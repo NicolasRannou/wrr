@@ -1,35 +1,51 @@
 <html>
 <head>
 <title>Web Reading Room</title>
+<!-- External libraries -->
 <link
  href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css"
  rel="stylesheet">
+
+<!-- Local libraries -->
 <link href="/css/wrr.css" rel="stylesheet">
+<link href="/css/welcomeRoom.css" rel="stylesheet">
+<link href="/css/readingRoom.css" rel="stylesheet">
 </head>
 <body>
- <div class="container">
-  <div class="row-fluid">
-   <div class='span4 well'>
-    <div>
-     <form id="target">
-      <label for="messageText">Message</label> <input type="text"
-       id="messageText" />
-     </form>
+
+ <div id="welcomeRoom">
+  <button id="createRR" type="button">Create a Reading Room</button>
+ </div>
+
+ <div id="readingRoom">
+  <div class="container">
+   <div class="row-fluid">
+    <div class='span4 well'>
+     <div>
+      <form id="target">
+       <label for="messageText">Message</label> <input type="text"
+        id="messageText" />
+      </form>
+     </div>
+     <div>
+      <ul id="messages">
+      </ul>
+     </div>
     </div>
-    <div>
-     <ul id="messages">
-     </ul>
-    </div>
+    <div id='3d' class='span8 threeDRenderer'
+     style="background-color: #000; height: 640px"></div>
    </div>
-   <div id='3d' class='span8 threeDRenderer'
-    style="background-color: #000; height: 640px"></div>
   </div>
  </div>
- <script type="text/javascript" src="http://get.goXTK.com/xtk.js"></script>
- <script type="text/javascript"
-  src="http://code.jquery.com/jquery-1.5.2.js"></script>
- <script src="/socket.io/socket.io.js"></script>
- <script type="text/javascript" src="/js/wrr.js"></script>
-
 </body>
+
+<!-- External libraries -->
+<script type="text/javascript" src="http://get.goXTK.com/xtk.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/webrtc.io.js"></script>
+<script type="text/javascript"
+ src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<!-- Local libraries -->
+<script type="text/javascript" src="/js/wrr.js"></script>
 </html>

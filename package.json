@@ -9,8 +9,13 @@
     }
   , "dependencies": {
         "socket.io": "0.9.x"
+      , "socket.io-client": "0.9.x"
       , "webrtc.io":"0.0.x"
+      , "webrtc.io-client":"0.0.x"
       , "express": "3.1.x"
-    },
-    "engine": "node >= 0.8.20"
+    }
+  , "scripts":{
+      "postinstall": "ln -s node_modules/webrtc.io-client/lib/webrtc.io.js ."
+  }
+  , "engine": "node >= 0.8.20"
 }

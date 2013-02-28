@@ -1,3 +1,5 @@
+var PeerConnection = window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection;
+
 // Create the cube
 createCube = function() {
   // create and initialize a 3D renderer
@@ -16,7 +18,6 @@ createCube = function() {
   r.render(); // ..and render it
   return r;
 };
-
 // Create the connection
 createConnections = function(socket, renderer) {
   // on connect
@@ -60,13 +61,55 @@ createConnections = function(socket, renderer) {
     }
   };
 };
-
+// initialize the reading room
+initRR = function() {
+  $('#createRR')
+      .on(
+          'click',
+          function() {
+            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+            var string_length = 8;
+            var randomstring = '';
+            for ( var i = 0; i < string_length; i++) {
+              var rnum = Math.floor(Math.random() * chars.length);
+              randomstring += chars.substring(rnum, rnum + 1);
+            }
+            window.location.hash = randomstring;
+            location.reload();
+          });
+};
+initChat = function() {
+  console.log('hellow');
+};
+init = function() {
+  if (PeerConnection) {
+    rtc.createStream({
+      "video" : true,
+      "audio" : true
+    }, function(stream) {
+      document.getElementById('you').src = URL.createObjectURL(stream);
+      videos.push(document.getElementById('you'));
+      // rtc.attachStream(stream, 'you');
+      subdivideVideos();
+    });
+  } else {
+    alert('Your browser is not supported or you have to turn on flags. In chrome you go to chrome://flags and turn on Enable PeerConnection remember to restart chrome');
+  }
+};
 $(document).ready(function() {
+  // initialize everything
+  init();
+  // initialize the websocket connection
+  // initConnection();
+  // initialize the reading room
+  // initRR();
+  // initialize the chat as well
+  // initChat();
   // Create the cube
   // connect push event as well
-  var renderer = createCube();
+  // var renderer = createCube();
   // create the socket connection
-  var socket = io.connect(window.location.href);
+  // var socket = io.connect(window.location.href);
   // connect the events
-  createConnections(socket, renderer);
+  // createConnections(socket, renderer);
 });
